@@ -1,0 +1,80 @@
+[project]
+name = "project-name"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = """
+duplicate-code,
+invalid-name,
+redefined-outer-name,
+relative-beyond-top-level,
+too-many-arguments,
+too-many-locals,
+too-many-positional-arguments,
+"""
+
+[tool.mypy]
+warn_unused_ignores = true
+disable_error_code = ["import-untyped"]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+respect-gitignore = true
+exclude = [
+    ".git"
+]
+target-version = "py313"
+
+[tool.ruff.lint]
+# Enable specific rules
+select = [
+    # Main Rules
+    "E",  # Pycodestyle errors
+    "ERA", # eradicate (commented-out code)
+    "F",  # pyflakes
+    "I",   # Import checks
+    "W",  # Pycodestyle warnings
+    
+    # Flake8 rules
+    "A", # flake8-builtins
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "BLE", # flake8-blind-except
+    "C4", # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "EM", # flake8-errmsg
+    "FIX", # flake8-fixme
+    "G", # flake8-logging-format
+    "ICN", # flake8-import-conventions
+    "INP", # flake8-no-pep420
+    "ISC", # flake8-implicit-str-concat
+    "LOG", # flake8-logging
+    "PIE", # flake8-pie
+    "PT", # flake8-pytest-style
+    "PTH", # flake8-use-pathlib
+    "PYI", # flake8-pyi
+    "RET", # flake8-return
+    "S", # flake8-bandit
+    "SIM", # flake8-simplify
+    "SLF", # flake8-self
+    "SLOT", # flake8-slots
+    "T10", # flake8-debugger
+
+    # Other ruls
+    "ANN", # Enforce type annotations
+    "C90",  # mccabe
+    "COM818", # trailing-comma-on-bare-tuple
+    "FLY", # flynt
+    "NPY", # numpy-specific rules
+    "PD", # pandas-vet
+    "PERF", # perflint (for performance)
+    "RUF", # Ruff-specific rules
+    "UP", # Pyupgrade (for newer syntax)
+]
+
+ignore = ["S101", "NPY002", "RET504"]
