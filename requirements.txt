@@ -16,4 +16,4 @@ ruff
 mypy
 pre-commit
 nbstripout
-
+pylint

@@ -1,6 +1,6 @@
 **Creating the environment**
 ```
-conda create --name env_name python=3.13
+conda create --name PDL_HW4 python=3.13
 pip install -r requirements.txt
 pre-commit install
 ```
@@ -9,4 +9,3 @@ pre-commit install
 ```
 pre-commit run --all-files
 ```
-
