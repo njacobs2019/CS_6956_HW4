@@ -3,7 +3,7 @@ __pycache__
 .mypy_cache
 .ruff_cache
 checkpoints/
-datasets/
+dataset/
 figures/
 .vscode
 .env
