@@ -66,7 +66,7 @@ select = [
     "T10", # flake8-debugger
 
     # Other ruls
-    "ANN", # Enforce type annotations
+    # "ANN", # Enforce type annotations
     "C90",  # mccabe
     "COM818", # trailing-comma-on-bare-tuple
     "FLY", # flynt

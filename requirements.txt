@@ -11,6 +11,8 @@ optuna==4.2.1
 optuna-dashboard==0.17.0
 python-dotenv==1.0.1
 
+diffusers[training]==0.33.1
+
 # Developer utils
 ruff
 mypy
