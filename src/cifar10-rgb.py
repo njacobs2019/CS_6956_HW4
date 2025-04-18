@@ -46,7 +46,7 @@ model = UNet2DModel(
     sample_size=config.image_size,  # the target image resolution
     in_channels=3,  # the number of input channels, 3 for RGB images
     out_channels=3,  # the number of output channels
-    layers_per_block=2,  # how many ResNet layers to use per UNet block
+    layers_per_block=3,  # how many ResNet layers to use per UNet block
     block_out_channels=(
         # 64,
         # 64,
@@ -99,7 +99,7 @@ experiment = comet_ml.start(
     experiment_config=comet_ml.ExperimentConfig(
         auto_metric_logging=False,
         disabled=False,  # Set True for debugging runs
-        name=f"cifar10_rgb_big_model_{config.num_epochs}epochs",
+        name=f"cifar10_rgb_mega_model_{config.num_epochs}epochs",
     ),
 )
 experiment.log_parameters(asdict(config))
