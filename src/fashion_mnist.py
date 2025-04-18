@@ -11,21 +11,20 @@ from torchvision import datasets, transforms
 from .config import TrainingConfig
 from .training import train_loop
 
-config = TrainingConfig(device=torch.device("cuda:1"))
+config = TrainingConfig(device=torch.device("cuda:2"), image_size=28)
 
 
 transform = transforms.Compose(
     [
-        transforms.Grayscale(),
         transforms.ToTensor(),
     ]
 )
 
 print("Getting dataset...............", end="")
-train_ds = datasets.CIFAR10(
+train_ds = datasets.FashionMNIST(
     root=config.ds_root, train=True, transform=transform, download=True
 )
-test_ds = datasets.CIFAR10(
+test_ds = datasets.FashionMNIST(
     root=config.ds_root, train=False, transform=transform, download=True
 )
 print("Done")
@@ -100,7 +99,7 @@ experiment = comet_ml.start(
     experiment_config=comet_ml.ExperimentConfig(
         auto_metric_logging=False,
         disabled=False,  # Set True for debugging runs
-        name="cifar10_grayscale",
+        name="fashion_MNIST",
     ),
 )
 experiment.log_parameters(asdict(config))

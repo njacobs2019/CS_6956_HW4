@@ -144,11 +144,13 @@ def evaluate(
     # Sample some images from random noise (this is the backward diffusion process).
     # The default pipeline output type is `List[PIL.Image]`
     images = pipeline(
-        batch_size=config.eval_batch_size,
+        batch_size=config.save_num_imgs,
         generator=torch.Generator(device="cpu").manual_seed(config.seed),
     ).images
 
     # Make a grid out of the images
     image_grid = make_image_grid(images, rows=4, cols=4)
 
-    experiment.log_image(image_data=image_grid, metadata={"epoch": epoch})
+    experiment.log_image(
+        name=f"Epoch_{epoch}", image_data=image_grid, metadata={"epoch": epoch}
+    )

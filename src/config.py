@@ -9,12 +9,13 @@ class TrainingConfig:
     device: torch.device
     image_size: int = 32
     train_batch_size: int = 256
-    eval_batch_size: int = 16
+    eval_batch_size: int = 256
     num_workers: int = 16
     num_epochs: int = 20
     learning_rate: float = 1e-4
     lr_warmup_steps: int = 500
     save_image_epochs: int = 5  # save images every x epochs
+    save_num_imgs: int = 16
     seed: int = 0
     ds_root: Path = Path("./datasets")
 
