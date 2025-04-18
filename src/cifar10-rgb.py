@@ -11,7 +11,7 @@ from torchvision import datasets, transforms
 from .config import TrainingConfig
 from .training import train_loop
 
-config = TrainingConfig(device=torch.device("cuda:2"))
+config = TrainingConfig(device=torch.device("cuda:1"), learning_rate=3e-4)
 
 
 transform = transforms.Compose(
@@ -85,11 +85,12 @@ noise_scheduler = DDPMScheduler(num_train_timesteps=1000)
 optimizer = torch.optim.AdamW(
     model.parameters(), lr=config.learning_rate, foreach=False
 )
-lr_scheduler = get_cosine_schedule_with_warmup(
-    optimizer=optimizer,
-    num_warmup_steps=config.lr_warmup_steps,
-    num_training_steps=(len(train_loader) * config.num_epochs),
-)
+# lr_scheduler = get_cosine_schedule_with_warmup(
+#     optimizer=optimizer,
+#     num_warmup_steps=config.lr_warmup_steps,
+#     num_training_steps=(len(train_loader) * config.num_epochs),
+# )
+lr_scheduler = None
 
 experiment = comet_ml.start(
     api_key=os.getenv("COMET_API_KEY"),
@@ -99,7 +100,10 @@ experiment = comet_ml.start(
     experiment_config=comet_ml.ExperimentConfig(
         auto_metric_logging=False,
         disabled=False,  # Set True for debugging runs
-        name=f"cifar10_rgb_mega_model_{config.num_epochs}epochs",
+        name=(
+            f"cifar10_rgb_mega_model_{config.num_epochs}epochs"
+            f"_no_scheduler_lr{config.learning_rate:.2e}"
+        ),
     ),
 )
 experiment.log_parameters(asdict(config))
