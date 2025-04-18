@@ -11,11 +11,12 @@ from torchvision import datasets, transforms
 from .config import TrainingConfig
 from .training import train_loop
 
-config = TrainingConfig(device=torch.device("cuda:2"), image_size=28)
+config = TrainingConfig(device=torch.device("cuda:2"))
 
 
 transform = transforms.Compose(
     [
+        transforms.Pad(2),
         transforms.ToTensor(),
     ]
 )
