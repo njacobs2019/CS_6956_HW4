@@ -18,6 +18,7 @@ class TrainingConfig:
     save_num_imgs: int = 16
     seed: int = 0
     ds_root: Path = Path("./datasets")
+    save_folder: Path = Path("./figures")
 
     def __post_init__(self) -> None:
         self.ds_root.mkdir(parents=True, exist_ok=True)

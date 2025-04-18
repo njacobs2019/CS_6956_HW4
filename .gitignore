@@ -6,4 +6,4 @@ checkpoints/
 .vscode
 .env
 datasets/
-cifar10-unconditional
+figures/

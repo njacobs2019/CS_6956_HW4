@@ -151,6 +151,9 @@ def evaluate(
     # Make a grid out of the images
     image_grid = make_image_grid(images, rows=4, cols=4)
 
-    experiment.log_image(
-        name=f"Epoch_{epoch}", image_data=image_grid, metadata={"epoch": epoch}
-    )
+    # Setup folder and get file path
+    output_folder = config.save_folder / str(experiment.get_key())
+    output_folder.mkdir(parents=True, exist_ok=True)
+    fname = output_folder / f"epoch_{epoch}.png"
+
+    image_grid.save(fname)
