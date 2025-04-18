@@ -14,7 +14,7 @@ class TrainingConfig:
     num_epochs: int = 20
     learning_rate: float = 1e-4
     lr_warmup_steps: int = 500
-    save_image_epochs: int = 10
+    save_image_epochs: int = 5  # save images every x epochs
     seed: int = 0
     ds_root: Path = Path("./datasets")
 

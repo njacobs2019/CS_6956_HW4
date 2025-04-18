@@ -10,7 +10,7 @@ from torchvision import datasets, transforms
 from .config import TrainingConfig
 from .training import train_loop
 
-config = TrainingConfig(device=torch.cuda("cuda:1"))
+config = TrainingConfig(device=torch.device("cuda:1"))
 
 
 transform = transforms.Compose(
@@ -101,4 +101,13 @@ experiment = comet_ml.start(
     ),
 )
 
-train_loop(config, model, noise_scheduler, optimizer, train_loader, lr_scheduler)
+train_loop(
+    config,
+    model,
+    noise_scheduler,
+    optimizer,
+    train_loader,
+    test_loader,
+    lr_scheduler,
+    experiment,
+)
