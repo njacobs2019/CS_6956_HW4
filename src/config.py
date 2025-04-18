@@ -11,7 +11,7 @@ class TrainingConfig:
     train_batch_size: int = 256
     eval_batch_size: int = 256
     num_workers: int = 16
-    num_epochs: int = 20
+    num_epochs: int = 50
     learning_rate: float = 1e-4
     lr_warmup_steps: int = 500
     save_image_epochs: int = 5  # save images every x epochs

@@ -11,7 +11,7 @@ from torchvision import datasets, transforms
 from .config import TrainingConfig
 from .training import train_loop
 
-config = TrainingConfig(device=torch.device("cuda:1"))
+config = TrainingConfig(device=torch.device("cuda:2"))
 
 
 transform = transforms.Compose(
@@ -48,21 +48,21 @@ model = UNet2DModel(
     out_channels=3,  # the number of output channels
     layers_per_block=2,  # how many ResNet layers to use per UNet block
     block_out_channels=(
-        64,
-        64,
+        # 64,
+        # 64,
+        # 128,
+        # 128,
+        # 256,
         128,
         128,
         256,
-        # 128,
-        # 128,
-        # 256,
-        # 256,
-        # 512,
-        # 512,
+        256,
+        512,
+        512,
     ),  # the number of output channels for each UNet block
     down_block_types=(
         "DownBlock2D",  # a regular ResNet downsampling block
-        # "DownBlock2D",
+        "DownBlock2D",
         "DownBlock2D",
         "DownBlock2D",
         "AttnDownBlock2D",  # a ResNet downsampling block with spatial self-attention
@@ -72,7 +72,7 @@ model = UNet2DModel(
         "UpBlock2D",  # a regular ResNet upsampling block
         "AttnUpBlock2D",  # a ResNet upsampling block with spatial self-attention
         "UpBlock2D",
-        # "UpBlock2D",
+        "UpBlock2D",
         "UpBlock2D",
         "UpBlock2D",
     ),
@@ -99,7 +99,7 @@ experiment = comet_ml.start(
     experiment_config=comet_ml.ExperimentConfig(
         auto_metric_logging=False,
         disabled=False,  # Set True for debugging runs
-        name="cifar10_rgb",
+        name=f"cifar10_rgb_big_model_{config.num_epochs}epochs",
     ),
 )
 experiment.log_parameters(asdict(config))
