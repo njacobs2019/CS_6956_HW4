@@ -132,7 +132,10 @@ def train_loop(
             )
 
         # Sample some images
-        if comet_experiment is not None and epoch % config.save_image_epochs == 0:
+        comet_condition = comet_experiment is not None
+        epoch_condition = epoch % config.save_image_epochs == 0
+        final_epoch = epoch == config.num_epochs - 1
+        if comet_condition and (epoch_condition or final_epoch):
             evaluate(config, pipeline, epoch, comet_experiment)
 
     return val_loss
